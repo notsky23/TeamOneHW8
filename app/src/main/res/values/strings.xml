@@ -8,7 +8,7 @@
     <string name="username_string">Username</string>
     <string name="password_string">Password</string>
     <string name="account_yes_string">Already have an account?</string>
-    <string name="account_no_string">"Don't have an account?"</string>
+    <string name="account_no_string">Not yet registered?</string>
     <string name="login_string">Login</string>
     <string name="forgot_password_string">Forgot Password?</string>
 

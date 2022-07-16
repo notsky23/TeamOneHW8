@@ -166,7 +166,7 @@
         app:layout_constraintTop_toBottomOf="@id/createAccountButton" />
 
     <TextView
-        android:id="@+id/tvLogin"
+        android:id="@+id/tvLoginSwitch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"

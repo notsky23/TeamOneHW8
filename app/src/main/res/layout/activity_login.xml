@@ -103,6 +103,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="8dp"
+        android:onClick="mainActivity"
         android:text="@string/login_string"
         android:textAllCaps="false"
         android:textSize="20sp"
@@ -148,13 +149,14 @@
         app:layout_constraintTop_toBottomOf="@id/tvForgotPassword" />
 
     <TextView
-        android:id="@+id/tvLogin3"
+        android:id="@+id/tvCreateAccountSwitch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="8dp"
+        android:onClick="createAccountActivity"
         android:text="@string/create_account_string"
         android:textAlignment="center"
         android:textColor="#673AB7"

@@ -31,7 +31,6 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-//        TextView textViewSwitchToLogin = findViewById(R.id.loginTextView);
     }
 
     /**.
@@ -94,7 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
         int thisId = view.getId();
 
         // If id for button is the same then go to next page/activity
-        if (thisId == R.id.tvLogin) {
+        if (thisId == R.id.tvLoginSwitch) {
             // Set intent and start new activity
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
