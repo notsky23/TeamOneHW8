@@ -1,5 +1,16 @@
 <resources>
     <string name="app_name">FirebaseChatApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="about_us_header">ABOUT US</string>
+    <string name="team_one_header">TEAM ONE</string>
+
+    <string name="name1">Jose Lou (Notsky)</string>
+    <string name="name2">Mattia Contestabile</string>
+    <string name="name3">Ameya Gidh</string>
+    <string name="name4">Karan Shah</string>
+    <string name="name5">Yixuan Zhang (Monica)</string>
+    <string name="name6">Benjamin Tisdale (Lucian)</string>
 
 </resources>
