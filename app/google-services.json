@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "102280568084",
+    "firebase_url": "https://teamonehw8-default-rtdb.firebaseio.com",
+    "project_id": "teamonehw8",
+    "storage_bucket": "teamonehw8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:102280568084:android:d3b7476488c05b1602f601",
+        "android_client_info": {
+          "package_name": "edu.neu.firebasechatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "102280568084-n1ltki211d2bhafndipr8ln0gkf85u7s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3AA5mSt2ekGl28r1Dc_30gIs5boSiswc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "102280568084-n1ltki211d2bhafndipr8ln0gkf85u7s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:102280568084:android:452b3475b215678502f601",
+        "android_client_info": {
+          "package_name": "edu.neu.madcourse.firebasedemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "102280568084-n1ltki211d2bhafndipr8ln0gkf85u7s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3AA5mSt2ekGl28r1Dc_30gIs5boSiswc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "102280568084-n1ltki211d2bhafndipr8ln0gkf85u7s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:102280568084:android:0f150aca23a8d0c302f601",
+        "android_client_info": {
+          "package_name": "edu.neu.teamonehw8"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "102280568084-n1ltki211d2bhafndipr8ln0gkf85u7s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3AA5mSt2ekGl28r1Dc_30gIs5boSiswc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "102280568084-n1ltki211d2bhafndipr8ln0gkf85u7s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

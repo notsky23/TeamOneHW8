@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/notsk/OneDrive/Surface Pro 6/Documents/Notsky/Education/Masters/Northeastern University/3rd Semester - Summer 2022/5520 - Mobile App Development/Week 9/FirebaseChatApp/app/src/main/res/layout/activity_main.xml" value="0.2359375" />
+        <entry key="..\:/Users/notsk/OneDrive/Surface Pro 6/Documents/Notsky/Education/Masters/Northeastern University/3rd Semester - Summer 2022/5520 - Mobile App Development/Week 9/FirebaseChatApp/app/src/main/res/layout/activity_new.xml" value="0.264" />
+        <entry key="..\:/Users/notsk/OneDrive/Surface Pro 6/Documents/Notsky/Education/Masters/Northeastern University/3rd Semester - Summer 2022/5520 - Mobile App Development/Week 9/FirebaseChatApp/app/src/main/res/layout/image_layout.xml" value="0.24895833333333334" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
