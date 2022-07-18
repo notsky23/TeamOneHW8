@@ -20,7 +20,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/imageview"
+                android:id="@+id/imageviewLS"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginStart="5dp"
@@ -31,10 +31,10 @@
                 tools:ignore="MissingConstraints" />
 
             <TextView
-                android:id="@+id/textview"
+                android:id="@+id/textviewLS"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/imageview"
+                android:layout_below="@id/imageviewLS"
                 android:textStyle="bold"
                 android:text="text"
                 android:textSize="20sp"

@@ -16,13 +16,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import edu.neu.firebasechatapp.Adapter.RecyclerImageAdapter;
+import edu.neu.firebasechatapp.Adapter.StickerAdapter;
 import edu.neu.firebasechatapp.Model.ImageModel;
 
 public class GalleryActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ArrayList<ImageModel> imageModelArrayList;
-    private RecyclerImageAdapter recyclerImageAdapter;
+    private StickerAdapter stickerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +51,9 @@ public class GalleryActivity extends AppCompatActivity {
                     imageModelArrayList.add(imageModel);
                 }
 
-                recyclerImageAdapter = new RecyclerImageAdapter(getApplicationContext(), imageModelArrayList);
-                recyclerView.setAdapter(recyclerImageAdapter);
-                recyclerImageAdapter.notifyDataSetChanged();
+                stickerAdapter = new StickerAdapter(getApplicationContext(), imageModelArrayList);
+                recyclerView.setAdapter(stickerAdapter);
+                stickerAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -69,8 +69,8 @@ public class GalleryActivity extends AppCompatActivity {
         if (imageModelArrayList != null) {
             imageModelArrayList.clear();
 
-            if(recyclerImageAdapter != null) {
-                recyclerImageAdapter.notifyDataSetChanged();
+            if(stickerAdapter != null) {
+                stickerAdapter.notifyDataSetChanged();
             }
         }
 
