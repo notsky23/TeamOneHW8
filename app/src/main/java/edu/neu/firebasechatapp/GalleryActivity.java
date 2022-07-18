@@ -16,6 +16,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import edu.neu.firebasechatapp.Adapter.RecyclerImageAdapter;
+import edu.neu.firebasechatapp.Model.ImageModel;
+
 public class GalleryActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ArrayList<ImageModel> imageModelArrayList;

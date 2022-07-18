@@ -1,14 +1,14 @@
-package edu.neu.firebasechatapp;
+package edu.neu.firebasechatapp.Model;
 
-public class User {
+public class UserModel {
     public String name;
     public String username;
     public String password;
 
-    public User() {
+    public UserModel() {
     }
 
-    public User(String name, String username, String password) {
+    public UserModel(String name, String username, String password) {
         this.name = name;
         this.username = username;
         this.password = password;

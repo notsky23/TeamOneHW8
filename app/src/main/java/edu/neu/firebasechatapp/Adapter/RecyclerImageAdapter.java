@@ -1,4 +1,4 @@
-package edu.neu.firebasechatapp;
+package edu.neu.firebasechatapp.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+
+import edu.neu.firebasechatapp.Model.ImageModel;
+import edu.neu.firebasechatapp.NewActivity;
+import edu.neu.firebasechatapp.R;
 
 public class RecyclerImageAdapter extends RecyclerView.Adapter<RecyclerImageAdapter.ViewHolder> {
     private Context context;

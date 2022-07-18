@@ -1,4 +1,4 @@
-package edu.neu.firebasechatapp;
+package edu.neu.firebasechatapp.Model;
 
 public class ImageModel {
 

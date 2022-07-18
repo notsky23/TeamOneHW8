@@ -9,6 +9,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import edu.neu.firebasechatapp.Fragments.AboutUsFragment;
+import edu.neu.firebasechatapp.Fragments.ChatFragment;
+import edu.neu.firebasechatapp.Fragments.UsersFragment;
 import edu.neu.firebasechatapp.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
