@@ -2,6 +2,7 @@ package edu.neu.firebasechatapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +18,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
+import edu.neu.firebasechatapp.Model.UserModel;
+
 public class NewActivity extends AppCompatActivity {
+    private Context context;
     private ImageView fullImageView;
     private TextView fullTextView;
     private Button send;
@@ -50,13 +54,13 @@ public class NewActivity extends AppCompatActivity {
             public void onClick(View view) {
                 sendSticker(firebaseUser.getUid(), userid,
                         getIntent().getStringExtra("stickerID@#"),
-                        getIntent().getStringExtra("name@#"));
+                        getIntent().getStringExtra("name@#"), view);
             }
         });
     }
 
-    public void sendSticker(String sender, String receiver, String stickerId, String stickerName) {
-
+    public void sendSticker(String sender, String receiver, String stickerId, String stickerName, View view) {
+        // Add values to database
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("sender", sender);
@@ -65,5 +69,20 @@ public class NewActivity extends AppCompatActivity {
         hashMap.put("stickerName", stickerName);
 
         reference.child("chatHistory").push().setValue(hashMap);
+
+        // Set variables
+        int thisId = view.getId();
+
+        // If id for button is the same then go to next page/activity
+        if (thisId == R.id.sendButton) {
+            // Set intent and start new activity
+            intent = new Intent(this, MessageActivity.class);
+            startActivity(intent);
+
+//            String user = hashMap.get("receiver").toString();
+//            Intent intent = new Intent(this, MessageActivity.class);
+//            intent.putExtra("userid", user);
+//            startActivity(intent);
+        }
     }
 }

@@ -45,10 +45,6 @@ public class StickerAdapter extends RecyclerView.Adapter<StickerAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        // Set variables
-//        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-//        final String userid = intent.getStringExtra("userid");
-
         Glide.with(context)
                 .load(stickerModelArrayList.get(position).getImageurl())
                 .into(holder.imageView);
