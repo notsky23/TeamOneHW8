@@ -17,11 +17,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import edu.neu.firebasechatapp.Adapter.StickerAdapter;
-import edu.neu.firebasechatapp.Model.ImageModel;
+import edu.neu.firebasechatapp.Model.StickerModel;
 
 public class GalleryActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private ArrayList<ImageModel> imageModelArrayList;
+    private ArrayList<StickerModel> stickerModelArrayList;
     private StickerAdapter stickerAdapter;
 
     @Override
@@ -33,7 +33,7 @@ public class GalleryActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(GalleryActivity.this, 1));
         recyclerView.setHasFixedSize(true);
 
-        imageModelArrayList = new ArrayList<>();
+        stickerModelArrayList = new ArrayList<>();
 
         clearAll();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("images");
@@ -44,14 +44,14 @@ public class GalleryActivity extends AppCompatActivity {
                 clearAll();
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    ImageModel imageModel = new ImageModel();
-                    imageModel.setName(snapshot.child("name").getValue().toString());
-                    imageModel.setImageurl(snapshot.child("stickerID").getValue().toString());
+                    StickerModel stickerModel = new StickerModel();
+                    stickerModel.setName(snapshot.child("name").getValue().toString());
+                    stickerModel.setImageurl(snapshot.child("stickerID").getValue().toString());
 
-                    imageModelArrayList.add(imageModel);
+                    stickerModelArrayList.add(stickerModel);
                 }
 
-                stickerAdapter = new StickerAdapter(getApplicationContext(), imageModelArrayList);
+                stickerAdapter = new StickerAdapter(getApplicationContext(), stickerModelArrayList);
                 recyclerView.setAdapter(stickerAdapter);
                 stickerAdapter.notifyDataSetChanged();
             }
@@ -66,14 +66,14 @@ public class GalleryActivity extends AppCompatActivity {
 
     private void clearAll() {
 
-        if (imageModelArrayList != null) {
-            imageModelArrayList.clear();
+        if (stickerModelArrayList != null) {
+            stickerModelArrayList.clear();
 
             if(stickerAdapter != null) {
                 stickerAdapter.notifyDataSetChanged();
             }
         }
 
-        imageModelArrayList = new ArrayList<>();
+        stickerModelArrayList = new ArrayList<>();
     }
 }

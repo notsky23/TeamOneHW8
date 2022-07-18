@@ -52,21 +52,4 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
 
     }
-
-    /**.
-     * Open new activity/page - Gallery
-     *
-     * @param view  the view object
-     */
-    public void galleryActivity(View view) {
-        // Set variables
-        int thisId = view.getId();
-
-        // If id for button is the same then go to next page/activity
-        if (thisId == R.id.galleryButton) {
-            // Set intent and start new activity
-            Intent intent = new Intent(this, GalleryActivity.class);
-            startActivity(intent);
-        }
-    }
 }

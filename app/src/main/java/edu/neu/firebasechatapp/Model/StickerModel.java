@@ -1,6 +1,6 @@
 package edu.neu.firebasechatapp.Model;
 
-public class ImageModel {
+public class StickerModel {
 
     private String imageurl;
     private String name;

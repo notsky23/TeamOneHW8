@@ -15,17 +15,17 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-import edu.neu.firebasechatapp.Model.ImageModel;
+import edu.neu.firebasechatapp.Model.StickerModel;
 import edu.neu.firebasechatapp.NewActivity;
 import edu.neu.firebasechatapp.R;
 
 public class StickerAdapter extends RecyclerView.Adapter<StickerAdapter.ViewHolder> {
     private Context context;
-    private ArrayList<ImageModel> imageModelArrayList;
+    private ArrayList<StickerModel> stickerModelArrayList;
 
-    public StickerAdapter(Context context, ArrayList<ImageModel> imageModelArrayList) {
+    public StickerAdapter(Context context, ArrayList<StickerModel> stickerModelArrayList) {
         this.context = context;
-        this.imageModelArrayList = imageModelArrayList;
+        this.stickerModelArrayList = stickerModelArrayList;
     }
 
     @NonNull
@@ -41,17 +41,17 @@ public class StickerAdapter extends RecyclerView.Adapter<StickerAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         Glide.with(context)
-                .load(imageModelArrayList.get(position).getImageurl())
+                .load(stickerModelArrayList.get(position).getImageurl())
                 .into(holder.imageView);
 
-        holder.textView.setText(imageModelArrayList.get(position).getName());
+        holder.textView.setText(stickerModelArrayList.get(position).getName());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, NewActivity.class);
-                intent.putExtra("stickerID@#", imageModelArrayList.get(position).getImageurl());
-                intent.putExtra("name@#", imageModelArrayList.get(position).getName());
+                intent.putExtra("stickerID@#", stickerModelArrayList.get(position).getImageurl());
+                intent.putExtra("name@#", stickerModelArrayList.get(position).getName());
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
@@ -60,7 +60,7 @@ public class StickerAdapter extends RecyclerView.Adapter<StickerAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return imageModelArrayList.size();
+        return stickerModelArrayList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

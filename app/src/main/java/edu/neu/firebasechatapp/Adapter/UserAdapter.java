@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.neu.firebasechatapp.MessageActivity;
 import edu.neu.firebasechatapp.Model.UserModel;
 import edu.neu.firebasechatapp.NewActivity;
 import edu.neu.firebasechatapp.R;
@@ -44,6 +45,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.name.setText(user.getName());
         holder.profileImage.setImageResource(R.mipmap.ic_launcher_round);
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, MessageActivity.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
