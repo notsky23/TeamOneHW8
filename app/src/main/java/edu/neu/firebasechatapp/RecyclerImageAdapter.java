@@ -29,7 +29,7 @@ public class RecyclerImageAdapter extends RecyclerView.Adapter<RecyclerImageAdap
     public RecyclerImageAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.image_layout, parent, false);
+                .inflate(R.layout.layout_sticker, parent, false);
         return new ViewHolder(view);
     }
 

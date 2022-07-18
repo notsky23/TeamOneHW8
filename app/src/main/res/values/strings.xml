@@ -6,6 +6,7 @@
     <string name="create_account_string">Create Account</string>
     <string name="name_string">Name</string>
     <string name="username_string">Username</string>
+    <string name="email_string">Email Address</string>
     <string name="password_string">Password</string>
     <string name="account_yes_string">Already have an account?</string>
     <string name="account_no_string">Not yet registered?</string>

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -31,6 +32,13 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
+        Button createAccountButton = findViewById(R.id.createAccountButton);
+        createAccountButton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               registerUser();
+           }
+        });
     }
 
     /**.
@@ -48,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
         String password = etPassword.getText().toString();
 
         if (name.isEmpty() || username.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_LONG);
+            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -62,15 +70,15 @@ public class RegisterActivity extends AppCompatActivity {
                             FirebaseDatabase.getInstance().getReference("users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            showMainActivity();
-                                        }
-                                    });
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    showMainActivity();
+                                }
+                            });
                         }
                         else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(RegisterActivity.this, "Authentication failed",
+                            Toast.makeText(RegisterActivity.this, task.getException().getMessage(),
                                     Toast.LENGTH_LONG).show();
                         }
                     }

@@ -4,7 +4,10 @@
     <item android:title="Chat"
         android:icon="@drawable/ic_baseline_chat_24"
         android:id="@+id/chat"/>
+    <item android:title="Users"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:id="@+id/users"/>
     <item android:title="About Us"
-        android:icon="@drawable/ic_baseline_group_24"
+        android:icon="@drawable/ic_baseline_info_24"
         android:id="@+id/aboutUs"/>
 </menu>
