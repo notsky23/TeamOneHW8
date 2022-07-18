@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
 import edu.neu.firebasechatapp.Model.UserModel;
@@ -21,6 +22,7 @@ import edu.neu.firebasechatapp.Model.UserModel;
 public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth userAuth;
+    private FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +70,11 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in userModel's information
-                            UserModel userModel = new UserModel(name, username, password);
+                            firebaseUser = userAuth.getCurrentUser();
+                            String id = firebaseUser.getUid();
+
+                            UserModel userModel = new UserModel(id, name, username, password);
+
                             FirebaseDatabase.getInstance().getReference("users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(userModel).addOnCompleteListener(new OnCompleteListener<Void>() {

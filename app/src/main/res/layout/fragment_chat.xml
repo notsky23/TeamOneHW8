@@ -7,16 +7,4 @@
     android:background="@color/teal_200"
     tools:context=".Fragments.ChatFragment">
 
-    <Button
-        android:id="@+id/galleryButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="galleryActivity"
-        android:text="Gallery"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.883"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.923" />
 </androidx.constraintlayout.widget.ConstraintLayout>

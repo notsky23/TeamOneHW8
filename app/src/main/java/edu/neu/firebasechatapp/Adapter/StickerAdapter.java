@@ -12,6 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 
@@ -22,10 +25,12 @@ import edu.neu.firebasechatapp.R;
 public class StickerAdapter extends RecyclerView.Adapter<StickerAdapter.ViewHolder> {
     private Context context;
     private ArrayList<StickerModel> stickerModelArrayList;
+    private String userid;
 
-    public StickerAdapter(Context context, ArrayList<StickerModel> stickerModelArrayList) {
+    public StickerAdapter(Context context, ArrayList<StickerModel> stickerModelArrayList, String userid) {
         this.context = context;
         this.stickerModelArrayList = stickerModelArrayList;
+        this.userid = userid;
     }
 
     @NonNull
@@ -40,6 +45,10 @@ public class StickerAdapter extends RecyclerView.Adapter<StickerAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
+        // Set variables
+//        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+//        final String userid = intent.getStringExtra("userid");
+
         Glide.with(context)
                 .load(stickerModelArrayList.get(position).getImageurl())
                 .into(holder.imageView);
@@ -49,9 +58,11 @@ public class StickerAdapter extends RecyclerView.Adapter<StickerAdapter.ViewHold
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(context, NewActivity.class);
                 intent.putExtra("stickerID@#", stickerModelArrayList.get(position).getImageurl());
                 intent.putExtra("name@#", stickerModelArrayList.get(position).getName());
+                intent.putExtra("userid", userid);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }

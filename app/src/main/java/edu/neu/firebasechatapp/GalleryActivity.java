@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +26,8 @@ public class GalleryActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ArrayList<StickerModel> stickerModelArrayList;
     private StickerAdapter stickerAdapter;
+    private FirebaseUser firebaseUser;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +48,11 @@ public class GalleryActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 clearAll();
 
+                // Set variables
+                firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                intent = getIntent();
+                final String userid = intent.getStringExtra("userid");
+
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     StickerModel stickerModel = new StickerModel();
                     stickerModel.setName(snapshot.child("name").getValue().toString());
@@ -51,7 +61,7 @@ public class GalleryActivity extends AppCompatActivity {
                     stickerModelArrayList.add(stickerModel);
                 }
 
-                stickerAdapter = new StickerAdapter(getApplicationContext(), stickerModelArrayList);
+                stickerAdapter = new StickerAdapter(getApplicationContext(), stickerModelArrayList, userid);
                 recyclerView.setAdapter(stickerAdapter);
                 stickerAdapter.notifyDataSetChanged();
             }

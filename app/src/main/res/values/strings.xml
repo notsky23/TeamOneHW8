@@ -12,6 +12,7 @@
     <string name="account_no_string">Not yet registered?</string>
     <string name="login_string">Login</string>
     <string name="forgot_password_string">Forgot Password?</string>
+    <string name="send">Send</string>
 
     <string name="about_us_header">ABOUT US</string>
     <string name="team_one_header">TEAM ONE</string>

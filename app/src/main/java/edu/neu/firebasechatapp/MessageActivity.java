@@ -6,14 +6,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
 public class MessageActivity extends AppCompatActivity {
 
-    FirebaseUser firebaseUser;
-    DatabaseReference reference;
-    Intent intent;
+    private FirebaseUser firebaseUser;
+    private DatabaseReference reference;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +33,14 @@ public class MessageActivity extends AppCompatActivity {
 
         // If id for button is the same then go to next page/activity
         if (thisId == R.id.galleryButton) {
+            // Set variables
+            firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+            intent = getIntent();
+            final String userid = intent.getStringExtra("userid");
+
             // Set intent and start new activity
             Intent intent = new Intent(this, GalleryActivity.class);
+            intent.putExtra("userid", userid);
             startActivity(intent);
         }
     }

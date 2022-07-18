@@ -1,6 +1,7 @@
 package edu.neu.firebasechatapp.Model;
 
 public class UserModel {
+    public String userid;
     public String name;
     public String username;
     public String password;
@@ -8,7 +9,8 @@ public class UserModel {
     public UserModel() {
     }
 
-    public UserModel(String name, String username, String password) {
+    public UserModel(String userid, String name, String username, String password) {
+        this.userid = userid;
         this.name = name;
         this.username = username;
         this.password = password;
@@ -36,5 +38,13 @@ public class UserModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 }
