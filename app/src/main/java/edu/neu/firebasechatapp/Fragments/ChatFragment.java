@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import edu.neu.firebasechatapp.Adapter.UserAdapter;
 import edu.neu.firebasechatapp.Model.ChatModel;
 import edu.neu.firebasechatapp.Model.UserModel;
+import edu.neu.firebasechatapp.Notifications.Token;
 import edu.neu.firebasechatapp.R;
 
 /**
@@ -121,7 +122,15 @@ public class ChatFragment extends Fragment {
             }
         });
 
+//        updateToken(FirebaseInstanceId.getO);
+
         return view;
+    }
+
+    private void updateToken(String token) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");
+        Token token1 = new Token(token);
+        reference.child (firebaseUser.getUid()).setValue(token1);
     }
 
     private void readChats() {
@@ -163,4 +172,5 @@ public class ChatFragment extends Fragment {
             }
         });
     }
+
 }
