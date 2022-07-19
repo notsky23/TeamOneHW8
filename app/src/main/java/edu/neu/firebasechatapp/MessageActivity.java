@@ -2,11 +2,14 @@ package edu.neu.firebasechatapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -22,6 +25,7 @@ import java.util.ArrayList;
 
 import edu.neu.firebasechatapp.Adapter.MessageAdapter;
 import edu.neu.firebasechatapp.Adapter.StickerAdapter;
+import edu.neu.firebasechatapp.Fragments.UsersFragment;
 import edu.neu.firebasechatapp.Model.ChatModel;
 import edu.neu.firebasechatapp.Model.StickerModel;
 
@@ -42,9 +46,9 @@ public class MessageActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         // Set variables
-//        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-//        intent = getIntent();
-//        final String userid = intent.getStringExtra("userid");
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        intent = getIntent();
+        final String userid = intent.getStringExtra("userid");
 
         chatModelArrayList = new ArrayList<>();
 
@@ -68,12 +72,16 @@ public class MessageActivity extends AppCompatActivity {
                     chatModel.setStickerName(snapshot.child("stickerName").getValue().toString());
                     chatModel.setStickerId(snapshot.child("stickerId").getValue().toString());
 
-                    chatModelArrayList.add(chatModel);
+//                    chatModelArrayList.add(chatModel);
 
-//                    if (snapshot.child("sender").getValue().toString().equals(firebaseUser.getUid())
-//                            && snapshot.child("receiver").getValue().toString().equals(userid)) {
-//                        chatModelArrayList.add(chatModel);
-//                    }
+                    if (snapshot.child("sender").getValue().toString().equals(firebaseUser.getUid())
+                            && snapshot.child("receiver").getValue().toString().equals(userid)) {
+                        chatModelArrayList.add(chatModel);
+                    }
+                    if (snapshot.child("receiver").getValue().toString().equals(firebaseUser.getUid())
+                            && snapshot.child("sender").getValue().toString().equals(userid)) {
+                        chatModelArrayList.add(chatModel);
+                    }
                 }
 
                 messageAdapter = new MessageAdapter(getApplicationContext(), chatModelArrayList);

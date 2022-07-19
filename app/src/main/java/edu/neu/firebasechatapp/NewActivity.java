@@ -76,13 +76,13 @@ public class NewActivity extends AppCompatActivity {
         // If id for button is the same then go to next page/activity
         if (thisId == R.id.sendButton) {
             // Set intent and start new activity
-            intent = new Intent(this, MessageActivity.class);
-            startActivity(intent);
-
-//            String user = hashMap.get("receiver").toString();
-//            Intent intent = new Intent(this, MessageActivity.class);
-//            intent.putExtra("userid", user);
+//            intent = new Intent(this, MessageActivity.class);
 //            startActivity(intent);
+
+            String user = hashMap.get("receiver").toString();
+            Intent intent = new Intent(this, MessageActivity.class);
+            intent.putExtra("userid", user);
+            startActivity(intent);
         }
     }
 }
