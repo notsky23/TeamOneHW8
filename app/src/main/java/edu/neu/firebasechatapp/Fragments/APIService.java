@@ -1,6 +1,6 @@
 package edu.neu.firebasechatapp.Fragments;
 
-import edu.neu.firebasechatapp.Notifications.Response;
+import edu.neu.firebasechatapp.Notifications.MyResponse;
 import edu.neu.firebasechatapp.Notifications.Sender;
 
 import retrofit2.Call;
@@ -17,5 +17,5 @@ public interface APIService {
     )
 
     @POST ("fcm/send")
-    Call<Response> sendNotification(@Body Sender body);
+    Call<MyResponse> sendNotification(@Body Sender body);
 }

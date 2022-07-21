@@ -31,7 +31,7 @@ public class OreoNotification extends ContextWrapper {
                 CHANNEL_NAME,
                 NotificationManager.IMPORTANCE_DEFAULT);
         channel.enableLights(false);
-        channel.enableVibration(false);
+        channel.enableVibration(true);
         channel.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
 
         getManager().createNotificationChannel(channel);
@@ -52,6 +52,7 @@ public class OreoNotification extends ContextWrapper {
                 .setContentIntent(pendingIntent)
                 .setContentTitle(title)
                 .setContentText(body)
+                .setSmallIcon(Integer.parseInt(icon))
                 .setSound(soundUri)
                 .setAutoCancel(true);
     }

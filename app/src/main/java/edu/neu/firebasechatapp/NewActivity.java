@@ -28,11 +28,12 @@ import edu.neu.firebasechatapp.Fragments.APIService;
 import edu.neu.firebasechatapp.Model.UserModel;
 import edu.neu.firebasechatapp.Notifications.Client;
 import edu.neu.firebasechatapp.Notifications.Data;
-import edu.neu.firebasechatapp.Notifications.Response;
+import edu.neu.firebasechatapp.Notifications.MyResponse;
 import edu.neu.firebasechatapp.Notifications.Sender;
 import edu.neu.firebasechatapp.Notifications.Token;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 
 public class NewActivity extends AppCompatActivity {
     private Context context;
@@ -107,7 +108,7 @@ public class NewActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
-        final String msg = stickerName;
+//        final String msg = stickerName;
 
         reference = FirebaseDatabase.getInstance().getReference("users").child(firebaseUser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
@@ -115,7 +116,7 @@ public class NewActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 UserModel user = dataSnapshot.getValue(UserModel.class);
                 if (notify) {
-                    sendNotification(receiver, user.getUsername(), msg);
+                    sendNotification(receiver, user.getUsername(), stickerName);
                 }
                 notify = false;
             }
@@ -139,21 +140,22 @@ public class NewActivity extends AppCompatActivity {
                             username + ": " + message, "New Message", userid);
                     Sender sender = new Sender(data, token.getToken());
                     apiService.sendNotification(sender)
-                            .enqueue(new Callback<Response>() {
+                            .enqueue(new Callback<MyResponse>() {
                                 @Override
-                                public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+                                public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
                                     if (response.code() == 200) {
-                                        if (response.body().success == 1) {
-                                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                        if (response.body().success != 1) {
+                                            Toast.makeText(NewActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 }
 
                                 @Override
-                                public void onFailure(Call<Response> call, Throwable t) {
+                                public void onFailure(Call<MyResponse> call, Throwable t) {
 
                                 }
                             });
+
                 }
             }
 

@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -123,7 +125,8 @@ public class ChatFragment extends Fragment {
             }
         });
 
-        updateToken(FirebaseMessaging.getInstance().getToken().toString());
+        updateToken(FirebaseMessaging.getInstance().getToken())
+
 
         return view;
     }

@@ -1,5 +1,5 @@
 package edu.neu.firebasechatapp.Notifications;
 
-public class Response {
+public class MyResponse {
     public int success;
 }
