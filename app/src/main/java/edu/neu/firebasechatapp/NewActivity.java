@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,7 +28,11 @@ import edu.neu.firebasechatapp.Fragments.APIService;
 import edu.neu.firebasechatapp.Model.UserModel;
 import edu.neu.firebasechatapp.Notifications.Client;
 import edu.neu.firebasechatapp.Notifications.Data;
+import edu.neu.firebasechatapp.Notifications.Response;
+import edu.neu.firebasechatapp.Notifications.Sender;
 import edu.neu.firebasechatapp.Notifications.Token;
+import retrofit2.Call;
+import retrofit2.Callback;
 
 public class NewActivity extends AppCompatActivity {
     private Context context;
@@ -40,6 +45,7 @@ public class NewActivity extends AppCompatActivity {
 
     private String userid;
     private APIService apiService;
+    boolean notify = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +55,7 @@ public class NewActivity extends AppCompatActivity {
         // Set variables
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         intent = getIntent();
-        final String userid = intent.getStringExtra("userid");
+        userid = intent.getStringExtra("userid");
         apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
 
         fullImageView = findViewById(R.id.fullImageView);
@@ -73,6 +79,9 @@ public class NewActivity extends AppCompatActivity {
     }
 
     public void sendSticker(String sender, String receiver, String stickerId, String stickerName, View view) {
+        // notify
+        notify = true;
+
         // Add values to database
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         HashMap<String, Object> hashMap = new HashMap<>();
@@ -105,7 +114,10 @@ public class NewActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 UserModel user = dataSnapshot.getValue(UserModel.class);
-                sendNotification(receiver, user.getUsername(), msg);
+                if (notify) {
+                    sendNotification(receiver, user.getUsername(), msg);
+                }
+                notify = false;
             }
 
             @Override
@@ -125,6 +137,23 @@ public class NewActivity extends AppCompatActivity {
                     Token token = snapshot.getValue(Token.class);
                     Data data = new Data(firebaseUser.getUid(), R.mipmap.ic_launcher,
                             username + ": " + message, "New Message", userid);
+                    Sender sender = new Sender(data, token.getToken());
+                    apiService.sendNotification(sender)
+                            .enqueue(new Callback<Response>() {
+                                @Override
+                                public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+                                    if (response.code() == 200) {
+                                        if (response.body().success == 1) {
+                                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<Response> call, Throwable t) {
+
+                                }
+                            });
                 }
             }
 
@@ -132,6 +161,6 @@ public class NewActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        })
+        });
     }
 }
