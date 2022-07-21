@@ -1,13 +1,14 @@
 package edu.neu.firebasechatapp.Fragments;
 
+import edu.neu.firebasechatapp.Notifications.Response;
 import edu.neu.firebasechatapp.Notifications.Sender;
+
 import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
-public class APIService {
+public interface APIService {
     @Headers (
         {
             "Content-Type:application/json",

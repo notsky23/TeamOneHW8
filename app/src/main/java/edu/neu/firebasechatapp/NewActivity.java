@@ -1,5 +1,6 @@
 package edu.neu.firebasechatapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -13,12 +14,20 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
+import edu.neu.firebasechatapp.Fragments.APIService;
 import edu.neu.firebasechatapp.Model.UserModel;
+import edu.neu.firebasechatapp.Notifications.Client;
+import edu.neu.firebasechatapp.Notifications.Data;
+import edu.neu.firebasechatapp.Notifications.Token;
 
 public class NewActivity extends AppCompatActivity {
     private Context context;
@@ -29,6 +38,9 @@ public class NewActivity extends AppCompatActivity {
     private FirebaseUser firebaseUser;
     private Intent intent;
 
+    private String userid;
+    private APIService apiService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +50,7 @@ public class NewActivity extends AppCompatActivity {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         intent = getIntent();
         final String userid = intent.getStringExtra("userid");
+        apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
 
         fullImageView = findViewById(R.id.fullImageView);
         send = findViewById(R.id.sendButton);
@@ -84,5 +97,41 @@ public class NewActivity extends AppCompatActivity {
             intent.putExtra("userid", user);
             startActivity(intent);
         }
+
+        final String msg = stickerName;
+
+        reference = FirebaseDatabase.getInstance().getReference("users").child(firebaseUser.getUid());
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                UserModel user = dataSnapshot.getValue(UserModel.class);
+                sendNotification(receiver, user.getUsername(), msg);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void sendNotification (String receiver, String username, String message) {
+        DatabaseReference tokens = FirebaseDatabase.getInstance().getReference("Tokens");
+        Query query = tokens.orderByKey().equalTo(receiver);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Token token = snapshot.getValue(Token.class);
+                    Data data = new Data(firebaseUser.getUid(), R.mipmap.ic_launcher,
+                            username + ": " + message, "New Message", userid);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        })
     }
 }
