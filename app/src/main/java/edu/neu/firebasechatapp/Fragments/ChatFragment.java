@@ -122,15 +122,9 @@ public class ChatFragment extends Fragment {
             }
         });
 
-//        updateToken(FirebaseInstanceId.getO);
+        updateToken(FirebaseInstanceId.getO);
 
         return view;
-    }
-
-    private void updateToken(String token) {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");
-        Token token1 = new Token(token);
-        reference.child (firebaseUser.getUid()).setValue(token1);
     }
 
     private void readChats() {
@@ -171,6 +165,12 @@ public class ChatFragment extends Fragment {
 
             }
         });
+    }
+
+    private void updateToken(String token) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");
+        Token token1 = new Token(token);
+        reference.child (firebaseUser.getUid()).setValue(token1);
     }
 
 }
